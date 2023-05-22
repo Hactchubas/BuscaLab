@@ -8,5 +8,5 @@ made for transparency and easy to edit it's content (second option exclusive for
 
 Installing dependencies:
   python;
-  django (pip install django)
-  SQLite
+  django (pip install django);
+  SQLite;
