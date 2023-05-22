@@ -1,0 +1,17 @@
+{% extends "busca_lab/layout.html" %}
+
+{% block body %}
+
+    <h1>BuscaLab</h1>
+    <input type="search">
+    
+    <ul>
+        {% for lab in labs %}
+            <li><a href="{% url 'buscalab:lab' lab.id %}">{{ lab }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <input type="button" value="Reportar">
+    <input type="button" value="Regras">
+
+{% endblock %}

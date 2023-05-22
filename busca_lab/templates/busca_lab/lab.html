@@ -1,0 +1,27 @@
+{% extends "busca_lab/layout.html" %}
+
+{% block body %}
+
+    <h1>Laboratório {{ lab.id }}</h1>
+    <br>
+    <h2>Softwares</h2>
+    <ul>
+        {% for soft in softwares %}
+            <li>
+                {{ soft.name }} | {{ soft.version }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Modelos</h2>    
+    <ul>
+        {% for model in models %}
+            <li>
+                {{model.model.manufacturer}} {{ model.model.name }}
+                <p>Quantidade: {{ model.quantity }}</p>
+            </li>
+        {% endfor %}
+        
+    </ul>
+
+{% endblock %}
