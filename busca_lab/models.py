@@ -24,15 +24,33 @@ class Software(models.Model):
     def __str__(self):
         return f"{self.name}, version: {self.version}"
 
+class Equipament(models.Model):
+    type_of = models.CharField(max_length=50)
+    name =models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"{self.type_of} | {self.name}"
+
+
 
 class Lab(models.Model):
     name = models.CharField(max_length=64)
     softwares = models.ManyToManyField(Software, blank=True, related_name="installed_in")
     model = models.ManyToManyField(PC_model,blank=True, related_name="locals")
+    equipaments = models.ManyToManyField(Equipament,blank=True, related_name="are_in")
     
 
     def __str__(self):
         return f"{self.name}" 
+
+class Report(models.Model):
+    lab = models.ForeignKey(Lab,on_delete=models.CASCADE, related_name= "lab")
+    category = models.CharField(max_length=50)
+    identifier = models.CharField( max_length=50)
+    description = models.CharField(max_length=200)
+
+    def __str__(self):
+        return f"{self.lab}, {self.identifier}\n {self.description}"
     
 class Quantity(models.Model):
     model = models.ForeignKey(PC_model, on_delete=models.CASCADE, related_name = "models")

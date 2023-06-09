@@ -1,17 +1,67 @@
 {% extends "busca_lab/layout.html" %}
-
+{% load static %}
 {% block body %}
+    <style>
+        *{
+            outline: dashed red 1px;
+            margin: 0px;
+            padidng: 0px;
+        }
+        body{
+            padidng: 10px;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: center;
+        }
+        header{
+            width: 100%;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        button{
+            max-height: 20px;
+        }
+        ul{
+            text-decoration: none;
+            list-style-type: none;
+            max-width: 80%;
 
-    <h1>BuscaLab</h1>
-    <input type="search">
-    
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        #nav{
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        img{
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+    <header>
+        <h1>BuscaLab</h1>
+        <button>Search</button>
+    </header>
     <ul>
         {% for lab in labs %}
-            <li><a href="{% url 'buscalab:lab' lab.id %}">{{ lab }}</a></li>
+            <li>
+                <a href="{% url 'buscalab:lab' lab.id %}"><img src="{% static 'busca_lab/images/placeholder-image.png' %}" alt="{{ lab }}"></a>
+            </li>
         {% endfor %}
     </ul>
 
-    <input type="button" value="Reportar">
-    <input type="button" value="Regras">
-
+    <article id="nav">
+        <input type="button" value="Reportar">
+        <input type="button" value="Regras">
+    </article>
 {% endblock %}
