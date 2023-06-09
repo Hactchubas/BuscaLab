@@ -1,0 +1,119 @@
+{% extends "busca_lab/layout.html" %}
+
+{% block body %}
+
+
+    <style>
+        *{
+           outline: dashed red 1px;
+        }
+        body{
+            display: flex;
+            flex-flow: row nowrap;
+        }
+
+        aside{
+            width: 20%;
+        }
+        main{
+            width: 80%;
+        }
+        section{
+            width: 100%;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            
+            
+            
+        }
+        article{
+            
+            margin: auto;
+        }
+        div{
+            display: none;
+            flex-flow: row wrap;
+            justify-content: start;
+            align-items: center;
+            gap: 10px;
+            
+            
+        }
+
+        div > li{
+            width: 200px;
+            height: 100px;
+        }
+        div > p{
+            width: 200px;
+            height: 100px;
+        }
+    </style>
+    <aside >
+        <h1>BuscaLab</h1>
+        <ul>
+            {% for lab in labs %}
+            <a href="{% url 'buscalab:lab' lab.id %}"><li>Laboratorio {{lab.id}}</li></a>            
+            {% endfor %}
+        </ul>
+        <a href="{% url 'buscalab:logout' %}"><button>Logout</button></a>
+    </aside>
+    
+    <main>
+        <h1>Lab {{lab.id}}</h1>
+        <section id="view"> 
+            <article >
+                <button data-page="Reports" >Reports</button>
+            </article>
+            <article >
+                <button data-page="Softwares" >Softwares</button>
+            </article>
+            <article >
+                <button data-page="Computers">Computers</button> 
+            </article>
+            <article>
+                <button data-page="Equipaments">Equipaments</button> 
+            </article>            
+        </section>
+
+        <div id="Reports" >
+            {% for report in reports %}
+                <li>
+                    {{report.lab}} | {{ report.category }}
+                    <p>{{ report.identfier}}</p>
+                    <p>{{report.description}}</p>
+                </li>
+                
+            {% endfor %}        
+        </div>
+        <div id="Softwares">  
+                    
+            {% for soft in softwares %}
+            <li>
+            <p>{{soft.name}}</p>
+            </li>  
+            {% endfor %}
+            
+        </div>
+        <div id="Computers" >
+            {% for model in models %}
+                {% if  model.quantity > 0 %}
+                <li>
+                    {{model.model.manufacturer}} {{ model.model.name }}
+                    <p>Quantidade: {{ model.quantity }}</p>
+                </li>
+                {% endif %}
+            {% endfor %}        
+        </div>
+        <div id="Equipaments" >
+            {% for equipament in equipaments %}            
+                <li>
+                    {{equipament.type_of}} | {{ equipament.name }}
+                    
+                </li>                
+            {% endfor %}        
+        </div>
+        
+    </main>
+{% endblock %}
