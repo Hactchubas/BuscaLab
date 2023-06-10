@@ -2,13 +2,52 @@
 
 {% block body %}
 
-<h1>BuscaLab</h1>
+<h1>BuscaLab {{ request.session.number }}</h1>
 
-<form action="{% url 'buscalab:report' %}" method="post">
+<form action="{% url 'buscalab:reportCreate' %}" method="POST">
+    {% csrf_token %}
+    <div class="form-content form-content-grid">
+        {% for field in form  %}
+            <div class="form-group">
+                <label for="{{field.id_for_label}}">{{field.label}}</label>
 
+                {{ field }}                
+                {{ field.errors }}
+            </div>
+        {% endfor %}
+        <div class="form-group">
+            <button type="submit" >Send</button>
+        </div>
+    </div>
     
 </form>
-{% csrf_token %}
+
+{% comment %} 
+<form action="{% url 'buscalab:report' %}" method="post">
+    <select name="lab" id="">
+        {% for lab in labs %}
+        <option value="Laboratório {{lab.id}}">Laboratório {{lab.id}}</option>
+        {% endfor %}
+    </select>
+    <select name="category" id="">        
+        <option value="Computer">Computer</option>
+        <option value="Software">Software</option>
+        <option value="Equipament">Equipament</option>
+        <option value="Other">Other</option>
+    </select>
+    <input name="identifier" type="text" placeholder = "Wich one">
+    <select name="problem" id="">        
+        <option value="NotInstaled">Not instaled</option>
+        <option value="DoesntOpen">Doesn't Open</option>
+        <option value="Expired">Expired</option>
+        <option value="Other">Other</option>
+    </select>
+    <br>
+    <textarea name="description" id="" cols="30" rows="10" placeholder="Description"></textarea>
+    
+    <input type="submit" value="Report">
+</form>
+{% csrf_token %} {% endcomment %}
 {% endblock  %}
 
 

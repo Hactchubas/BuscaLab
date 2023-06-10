@@ -1,7 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import PC_model, Software, Lab, Quantity, Equipament, Report
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
+
+from .forms import makeReport
+
 
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 # Create your views here.
@@ -62,4 +65,24 @@ def logout(request):
     })
 
 def reportPage(request):
-    return render(request, "busca_lab/report.html")
+
+    make_report_data = request.session.get('make_report_data', None)
+    form = makeReport(make_report_data)
+
+    return render(request, 'busca_lab/report.html',{
+        "form" : form,
+        "labs": Lab.objects.all(),
+    })
+
+def reportSend(request):
+    if not request.POST:
+        raise Http404()
+    POST = request.POST
+    request.session['make_report_data'] = POST
+    form = makeReport(request.POST)
+
+    return redirect('buscalab:report')
+   
+
+def rulesPage(request):
+    return render(request, "busca_lab/rules.html")

@@ -9,4 +9,6 @@ urlpatterns = [
     path("logout",views.logout, name="logout"),
 
     path("report", views.reportPage, name="report"),
+    path("report/create", views.reportSend, name="reportCreate"),
+    path("rules", views.rulesPage, name="rules")
 ]

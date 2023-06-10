@@ -47,6 +47,7 @@ class Report(models.Model):
     lab = models.ForeignKey(Lab,on_delete=models.CASCADE, related_name= "lab")
     category = models.CharField(max_length=50)
     identifier = models.CharField( max_length=50)
+    problem = models.CharField(max_length=50)
     description = models.CharField(max_length=200)
 
     def __str__(self):

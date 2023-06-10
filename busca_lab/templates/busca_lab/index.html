@@ -61,7 +61,7 @@
     </ul>
 
     <article id="nav">
-        <input type="button" value="Reportar">
-        <input type="button" value="Regras">
+        <a href="{% url 'buscalab:report' %}"><input type="button" value="Reportar"></a>
+        <a href="{% url 'buscalab:rules' %}"><input type="button" value="Regras"></a>
     </article>
 {% endblock %}
