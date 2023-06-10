@@ -1,9 +1,15 @@
 {% extends 'busca_lab/layout.html' %}
-
+{% load static %}
 {% block body %}
-
-<h1>BuscaLab {{ request.session.number }}</h1>
-
+<div class="header">
+    <img src="{% static 'busca_lab/images/placeholder-image.png' %}" alt="">
+    <h1>Reportar {{ request.session.number }}</h1>
+    
+</div>
+<article>
+    <h2>Found a problem?</h2>
+    <p>Better describe it for us to solve</p>
+</article>
 <form action="{% url 'buscalab:reportCreate' %}" method="POST">
     {% csrf_token %}
     <div class="form-content form-content-grid">
@@ -14,12 +20,13 @@
                 {{ field }}                
                 {{ field.errors }}
             </div>
-        {% endfor %}
-        <div class="form-group">
-            <button type="submit" >Send</button>
-        </div>
+        {% endfor %}        
     </div>
-    
+    <div class="form-content form-content-grid">
+        <div class="form-group">
+            <button class="form_button" type="submit" >Send</button>
+        </div>
+    </div>    
 </form>
 
 {% comment %} 

@@ -80,7 +80,7 @@ def reportSend(request):
     POST = request.POST
     request.session['make_report_data'] = POST
     form = makeReport(request.POST)
-
+    form.save()
     return redirect('buscalab:report')
    
 

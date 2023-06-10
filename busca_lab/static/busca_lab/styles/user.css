@@ -1,0 +1,77 @@
+/* Form */
+*{
+    outline: dashed 1px red;
+    padding: 0px;
+    margin: 0px;
+}
+body{
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+}
+article{
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 7px;
+    gap: 1rem;
+}
+.header{
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 10px;
+}
+.header img{
+    max-width: 15%;
+    height: auto;
+    border-radius: 50%;
+}
+.header h1{
+    justify-self: center;
+}
+form {
+    width: 100%;
+    padding: 0 7px;
+    box-sizing: border-box;    
+    /* background-color: #3FA9F5; */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+}
+.form-content {
+    max-width: 64rem;  
+    margin-bottom: 10px;
+}
+.form-content input,select,textarea{
+    width: 100%;
+    padding: .3rem 0;
+    border-radius: .4rem;
+    border: solid 1px #333333
+}
+.form-content label{
+    display: block;
+    margin: .5rem 0;
+    font-size: 1.1rem;
+}
+
+.form-content-grid{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100%,1fr));
+
+}
+
+.form_button{
+    color: #e6e6e6;
+    background-color: #333333;
+    
+    padding: .3rem 2rem;
+    border-radius: .4rem;
+    
+}
